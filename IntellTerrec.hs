@@ -26,7 +26,8 @@ data GroupSlots = GroupSlots {groupList :: [(GNumber, Day, Time, Time)]}
 	deriving (Show)
 
 
-{- Kontanten -}
+{- Konstanten -}
+
 freeSlot :: Date
 freeSlot = Date [(0, Time 11 30, Time 13 00), (0, Time 15 00, Time 17 00),
 	(0, Time 19 00, Time 24 00)]
@@ -36,15 +37,16 @@ groupSlot = GroupSlots [(1,0, Time 10 00, Time 12 00),
 	(2,0, Time 12 00, Time 14 00), (3,0, Time 19 00, Time 20 30)]
 
 
-subtractTimes :: Time -> Time -> Bool
-subtractTimes time1 time2 = (hour time1) < (hour time2)
-
-
 {- IO -}
 
 -- to implement
 
 
-{- Matching -}
+{- Funktionen -}
 
+subtractTimes :: Time -> Time -> Bool
+subtractTimes time1 time2 = (hour time1) < (hour time2)
 
+algorithm :: Date -> GroupSlots -> GroupSlots
+algorithm freeSlots groupSlots = 
+	[]
