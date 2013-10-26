@@ -26,7 +26,8 @@ groupSlot =
 
 {- IO -}
 
--- todo - implement
+parseTest :: String -> [[String]]
+parseTest csvData = 
 
 
 {- Funktionen -}
