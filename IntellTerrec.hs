@@ -8,9 +8,22 @@ module IntellTerrec where
  - .. möglichst kurze Laufwege -}
 
 
-{- Konstanten -}
+{- Typen -}
 
-type Time = (Integer, Integer) -- Von, Bis
+data Time = Time { startTime :: Integer, endTime :: Integer} -- Von, Bis
+data Date = Date [(Integer, Time, Time)]
+
+
+{- Kontanten -}
+
+startTime1 :: Time
+startTime1 = Time (12,30)
+
+endTime1 :: Time
+endTime1 = Time (14,00)
+
+lv1 :: Date
+lv1 = Date [(0, startTime1, endTime1)]
 
 
 {- IO -}
