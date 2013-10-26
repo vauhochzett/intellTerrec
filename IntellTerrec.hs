@@ -10,7 +10,7 @@ module IntellTerrec where
 
 {- Konstanten -}
 
-
+Time :: (Integer, Integer)
 
 
 {- IO -}
