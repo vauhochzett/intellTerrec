@@ -26,7 +26,10 @@ freeSlot :: DateList
 freeSlot = 
 	[Date 0 (Time 11 30) (Time 13 00), 
 	Date 0 (Time 15 00) (Time 17 00),
-	Date 0 (Time 19 00) (Time 23 00)]
+	Date 0 (Time 19 00) (Time 23 00),
+	Date 1 (Time 12 00) (Time 14 00),
+	Date 3 (Time 10 30) (Time 15 00),
+	Date 4 (Time 7 30) (Time 9 30)]
 
 groupSlot :: GroupList
 groupSlot = 
@@ -37,8 +40,8 @@ groupSlot =
 
 {- IO -}
 
-{-parseTest :: String -> [[String]]
-parseTest csvData = tail (parse csvData)-}
+main_1 :: GroupList
+main_1 = algorithm freeSlot (extractInfo inputString [])
 
 
 {- Funktionen -}
@@ -48,7 +51,7 @@ algorithm freeSlots groupSlots
 	| length (match_1 freeSlots groupSlots) > 0 = match_1 freeSlots groupSlots
 	| length (match_2 15 freeSlots groupSlots) > 0 = match_2 15 freeSlots groupSlots
 	| length (match_2 30 freeSlots groupSlots) > 0 = match_2 30 freeSlots groupSlots
-	| otherwise = undefined
+	| otherwise = []
 
 
 match_1 :: DateList -> GroupList -> GroupList

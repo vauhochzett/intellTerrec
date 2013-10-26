@@ -24,7 +24,7 @@ eol =   try (string "\n\r")
     <|> string "\r"
     <?> "end of line"
 
-parseCSV :: String -> Either ParseError [[String]]
+{-parseCSV :: String -> Either ParseError [[String]]
 parseCSV input = parse csvFile "(unknown)" input
 
 main =
@@ -33,16 +33,26 @@ main =
             Left e -> do putStrLn "Error parsing input:"
                          print e
             --Right r -> mapM_ print r
-            Right r -> mapM_ print (extractInfo r)
+            Right r -> mapM_ print (extractInfo r)-}
 
 -- parseTest :: String -> 
 
 
 {- Extraktion der relevanten Informationen -}
 
-extractInfo :: [[String]] -> GroupList
-extractInfo csvInput = [ Group group (extractDay day) (timeToDigits time1) (timeToDigits time2) | 
-  (day, a, time1, time2, b, c, d, e, group, f, g, h, i, j) <- csvInput ]
+extractInfo :: [[String]] -> GroupList -> GroupList
+extractInfo csvInputs results
+  | (length csvInputs) <= 1 = results
+  | otherwise = extractInfo (tail csvInputs) (results ++ (helpMeExtract 0 (head (tail csvInputs)) [] dummyGroup))
+
+helpMeExtract :: Integer -> [String] -> GroupList -> Group -> GroupList
+helpMeExtract counter sublist results result
+  | (length sublist) == 5 = results ++ [result]
+  | counter == 0 = helpMeExtract 1 (tail sublist) results (Group "" (extractDay (head sublist)) dummyTime dummyTime )
+  | counter == 2 = helpMeExtract 3 (tail sublist) results (Group "" (gday result) (extractTime (head sublist)) dummyTime)
+  | counter == 3 = helpMeExtract 4 (tail sublist) results (Group "" (gday result)  (gstartTime result) (extractTime (head sublist)))
+  | counter == 8 = helpMeExtract 9 (tail sublist) results (Group (head sublist) (gday result)  (gstartTime result) (gendTime result))
+  | otherwise = helpMeExtract (counter+1) (tail sublist) results result
 
 --"DI","15.10.2013","10:15","11:45","90","220016771",
 --"Tutorübungen zu Analysis für Informatik [MA0902]",
@@ -57,11 +67,11 @@ extractDay string
   | string == "DO" = 3
   | string == "FR" = 4
 
-timeToDigits :: String -> Time
-timeToDigits string = timeToDigits (words [ switchDD a | a <- string ])
+extractTime :: String -> Time
+extractTime string = extractTimeHelper (words [ switchDD a | a <- string ])
 
-extractTime :: [String] -> Time
-extractTime timeString 
+extractTimeHelper :: [String] -> Time
+extractTimeHelper timeString 
 	| length timeString == 2 = Time (read (head timeString)) (read (last timeString))
 	| otherwise = Time (read (head timeString)) (read (head (tail timeString)))
 
