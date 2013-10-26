@@ -19,14 +19,14 @@ type GroupList = [Group]
 type DateList = [Date]
 
 
-data Group = Group {gNumber :: GNumber, gday :: Day, gstartTime :: Time, gendTime :: Time}
-	deriving (Show)
+data Time = Time {hour :: Hour, minute :: Minute}
+	deriving (Show)	-- Von, Bis
 
 data Date = Date {dday :: Day, dstartTime :: Time, dendTime :: Time} 
 	deriving (Show)
 
-data Time = Time {hour :: Hour, minute :: Minute}
-	deriving (Show)	-- Von, Bis
+data Group = Group {gNumber :: GNumber, gday :: Day, gstartTime :: Time, gendTime :: Time}
+	deriving (Show)
 
 
 {- Konstanten -}
@@ -83,5 +83,6 @@ endWithin ftime gtime
 	| hour ftime == hour gtime && minute ftime >= minute gtime = True
 	| otherwise = False
 
-expandSlots :: Integer -> DateList -> DateList
-expandSlots amount freeSlots = undefined
+expandSlots :: Integer -> DateList -> DateList -- Integer ist die Menge der Minuten (sollte nur 15 und 30 sein)
+expandSlots amount freeSlots
+	| = [Date (dday freeSlots) ((dstartTime freeSlots))
