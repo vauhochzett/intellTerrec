@@ -6,13 +6,18 @@ module IntellTerrec where
  - .. möglichst wenige Tage in der Uni
  - .. möglichst kurze Wartezeiten
  - .. möglichst kurze Laufwege -}
- 
- 
- {- IO -}
- 
- -- to implement
- 
- 
- {- Matching -}
- 
- 
+
+
+{- Konstanten -}
+
+
+
+
+{- IO -}
+
+-- to implement
+
+
+{- Matching -}
+
+
