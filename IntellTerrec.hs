@@ -1,5 +1,6 @@
 module IntellTerrec where
 import Csv9
+import Types
 
 {- Idee: Terminlisten der Tutorgruppen aus TUMOnline herunterladen
  - und einlesen, beste Terminkombination nach folgenden Voraussetz-
@@ -19,15 +20,15 @@ freeSlot =
 
 groupSlot :: GroupList
 groupSlot = 
-	[Group 1 0 (Time 11 15) (Time 12 45), 
-	Group 2 0 (Time 12 00) (Time 13 30), 
-	Group 3 0 (Time 19 00) (Time 20 30)]
+	[Group "Gruppe 1" 0 (Time 11 15) (Time 12 45), 
+	Group "Gruppe 2" 0 (Time 12 00) (Time 13 30), 
+	Group "Gruppe 3" 0 (Time 19 00) (Time 20 30)]
 
 
 {- IO -}
 
-parseTest :: String -> [[String]]
-parseTest csvData = tail (parseCSV csvData)
+{-parseTest :: String -> [[String]]
+parseTest csvData = tail (parseCSV csvData)-}
 
 
 {- Funktionen -}
