@@ -14,15 +14,16 @@ type Day = Integer
 type Hour = Integer
 type Minute = Integer
 type GNumber = Integer
+type GroupList = [(GNumber, Day, Time, Time)]
 
 data Time = Time { hour :: Hour, minute :: Minute}
 	deriving (Show)	-- Von, Bis
 
 
-data DateList = DateList {datelist :: [(Day, Time, Time)]} 
+data DateList = DateList {dateList :: [(Day, Time, Time)]} 
 	deriving (Show)
 
-data GroupSlots = GroupSlots {groupList :: [(GNumber, Day, Time, Time)]}
+data GroupSlots = GroupSlots {groupList :: GroupList}
 	deriving (Show)
 
 
@@ -47,6 +48,21 @@ groupSlot = GroupSlots [(1,0, Time 10 00, Time 12 00),
 subtractTimes :: Time -> Time -> Bool
 subtractTimes time1 time2 = (hour time1) < (hour time2)
 
-algorithm :: DateList -> GroupSlots -> GroupSlots
-algorithm freeSlots groupSlots = 
-	[]
+compareStartTime :: Time -> Time -> Bool
+compareStartTime time1 time2 
+	| hour time1 < hour time2 = True
+	| hour time1 == hour time2 && minute time1 <= minute time2 = True
+	| otherwise = False
+
+compareEndTime :: Time -> Time -> Bool
+compareEndTime time1 time2
+	| hour time1 > hour time2 = True
+	| hour time1 == hour time2 && minute time1 >= minute time2 = True
+	| otherwise = False
+
+algorithm :: DateList -> GroupSlots -> GroupList
+algorithm freeSlots groupSlots = [(group, day, startTime, endTime) | (group, day, startTime, endTime) <- (groupList groupSlots), 
+	(freeDay, startFreeTime, endFreeTime) <- (dateList freeSlots), freeDay == day && compareStartTime startFreeTime startTime 
+	&& compareEndTime endFreeTime endTime]
+
+
