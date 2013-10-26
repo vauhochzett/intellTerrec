@@ -9,6 +9,7 @@ module IntellTerrec where
 
 
 {- Konstanten -}
+date::(Integer, Integer)
 
 Time :: (Integer, Integer)
 
