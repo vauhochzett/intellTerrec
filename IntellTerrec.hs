@@ -19,7 +19,7 @@ data Time = Time { hour :: Hour, minute :: Minute}
 	deriving (Show)	-- Von, Bis
 
 
-data Date = Date {datelist :: [(Day, Time, Time)]} 
+data DateList = DateList {datelist :: [(Day, Time, Time)]} 
 	deriving (Show)
 
 data GroupSlots = GroupSlots {groupList :: [(GNumber, Day, Time, Time)]}
@@ -28,8 +28,8 @@ data GroupSlots = GroupSlots {groupList :: [(GNumber, Day, Time, Time)]}
 
 {- Konstanten -}
 
-freeSlot :: Date
-freeSlot = Date [(0, Time 11 30, Time 13 00), (0, Time 15 00, Time 17 00),
+freeSlot :: DateList
+freeSlot = DateList [(0, Time 11 30, Time 13 00), (0, Time 15 00, Time 17 00),
 	(0, Time 19 00, Time 24 00)]
 
 groupSlot :: GroupSlots
@@ -47,6 +47,6 @@ groupSlot = GroupSlots [(1,0, Time 10 00, Time 12 00),
 subtractTimes :: Time -> Time -> Bool
 subtractTimes time1 time2 = (hour time1) < (hour time2)
 
-algorithm :: Date -> GroupSlots -> GroupSlots
+algorithm :: DateList -> GroupSlots -> GroupSlots
 algorithm freeSlots groupSlots = 
 	[]
