@@ -36,13 +36,13 @@ main =
 
 {- Extraktion der relevanten Informationen -}
 
+timeToDigits :: String -> [String]
+timeToDigits string = words [ switchDD a | a <- string ]
+
 extractTime :: [String] -> Time
 extractTime timeString 
 	| length timeString == 2 = Time (read (head timeString)) (read (last timeString))
 	| otherwise = Time (read (head timeString)) (read (head (tail timeString)))
-
-timeToDigits :: String -> [String]
-timeToDigits string = words [ switchDD a | a <- string ]
 
 switchDD :: Char -> Char
 switchDD character 
