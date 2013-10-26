@@ -6,6 +6,7 @@ import Data.DateTime
  - .. möglichst wenige Tage in der Uni
  - .. möglichst kurze Wartezeiten
  - .. möglichst kurze Laufwege -}
+<<<<<<< HEAD
  
 
  {- 
@@ -17,3 +18,20 @@ import Data.DateTime
  {- Matching -}
  
  
+=======
+
+
+{- Konstanten -}
+
+
+
+
+{- IO -}
+
+-- to implement
+
+
+{- Matching -}
+
+
+>>>>>>> 221ea55b44feba2076712d233034ffcf471bc998
