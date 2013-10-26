@@ -42,7 +42,7 @@ main =
 
 extractInfo :: [[String]] -> GroupList
 extractInfo csvInput = [ Group group (extractDay day) (timeToDigits time1) (timeToDigits time2) | 
-  (day, a, time1, time2, b, c, d, e, group, f, g, h, i, j, k) <- csvInput ]
+  (day, a, time1, time2, b, c, d, e, group, f, g, h, i, j) <- csvInput ]
 
 --"DI","15.10.2013","10:15","11:45","90","220016771",
 --"Tutorübungen zu Analysis für Informatik [MA0902]",
