@@ -20,28 +20,10 @@ main = do
     putStrLn filePath
 
 
-{- Konstanten (Testing) -}
+{- IO - Ziel: Rückgabe an C#-IO-Programm -}
 
-freeSlot :: DateList
-freeSlot = 
-	[Date 0 (Time 11 30) (Time 13 00), 
-	Date 0 (Time 15 00) (Time 17 00),
-	Date 0 (Time 19 00) (Time 23 00),
-	Date 1 (Time 12 00) (Time 14 00),
-	Date 3 (Time 10 30) (Time 15 00),
-	Date 4 (Time 7 30) (Time 9 30)]
-
-groupSlot :: GroupList
-groupSlot = 
-	[Group "Gruppe 1" 0 (Time 11 15) (Time 12 45), 
-	Group "Gruppe 2" 0 (Time 12 00) (Time 13 30), 
-	Group "Gruppe 3" 0 (Time 19 00) (Time 20 30)]
-
-
-{- IO -}
-
-main_1 :: GroupList
-main_1 = algorithm freeSlot (extractInfo inputString [])
+main_1 :: [GroupList]
+main_1 = [ algorithm freeSlot (extractInfo inputString []) | inputString <- inputStrings ]
 
 
 {- Funktionen -}

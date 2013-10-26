@@ -21,7 +21,16 @@ data Group = Group {gNumber :: GNumber, gday :: Day, gstartTime :: Time, gendTim
 	deriving (Show)
 
 
-{- Konstanten -}
+{- Konstanten - Ziel: aus dem C#-IO-Programm erhalten -}
+
+freeSlot :: DateList
+freeSlot = 
+	[Date 0 (Time 11 30) (Time 13 00), 
+	Date 0 (Time 15 00) (Time 17 00),
+	Date 0 (Time 19 00) (Time 23 00),
+	Date 1 (Time 12 00) (Time 14 00),
+	Date 3 (Time 10 30) (Time 15 00),
+	Date 4 (Time 7 30) (Time 9 30)]
 
 dummyTime :: Time
 dummyTime = Time 10 00
@@ -29,8 +38,14 @@ dummyTime = Time 10 00
 dummyGroup :: Group
 dummyGroup = (Group "" 0 dummyTime dummyTime)
 
-inputString :: [[String]]
-inputString = [["\65279\"WOCHENTAG\"","DATUM","VON","BIS","DAUER_IN_MINUTEN","LV_NUMMER","TITEL","LV_ART","LV_GRUPPE","ORT","EREIGNIS_TYP","TERMIN_TYP","VORTRAGENDER_KONTAKTPERSON","ANMERKUNG"],
+inputStrings :: [[[String]]]
+inputStrings = [inputStringAnalysis, inputStringTest]
+
+inputStringTest :: [[String]]
+inputStringTest = [[], ["DI","1.1.11","10:00","12:00","1","1","ABC","TT","Gruppe 99","abc","a","f","",""]]
+
+inputStringAnalysis :: [[String]]
+inputStringAnalysis = [["\65279\"WOCHENTAG\"","DATUM","VON","BIS","DAUER_IN_MINUTEN","LV_NUMMER","TITEL","LV_ART","LV_GRUPPE","ORT","EREIGNIS_TYP","TERMIN_TYP","VORTRAGENDER_KONTAKTPERSON","ANMERKUNG"],
 	["DI","15.10.2013","10:15","11:45","90","220016771","Tutor\252bungen zu Analysis f\252r Informatik [MA0902]","TT","Gruppe 17","MW 2235, Seminarraum (5502.02.235)","Abhaltung","feststehender Termin","",""],
 	["DI","15.10.2013","12:15","13:45","90","220016771","Tutor\252bungen zu Analysis f\252r Informatik [MA0902]","TT","Gruppe 2","03.06.011, Seminarraum (M6/M8) (5606.03.011)","Abhaltung","feststehender Termin","",""],
 	["DI","15.10.2013","12:15","13:45","90","220016771","Tutor\252bungen zu Analysis f\252r Informatik [MA0902]","TT","Gruppe 3","03.10.011, Seminarraum M4/M5/M13 (5610.03.011)","Abhaltung","feststehender Termin","",""],
