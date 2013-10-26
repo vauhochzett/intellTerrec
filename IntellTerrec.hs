@@ -27,7 +27,7 @@ groupSlot =
 {- IO -}
 
 parseTest :: String -> [[String]]
-parseTest csvData = 
+parseTest csvData = tail (parseCSV csvData)
 
 
 {- Funktionen -}
