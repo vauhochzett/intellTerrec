@@ -1,5 +1,5 @@
 module IntellTerrec where
-
+import Data.DateTime
 {- Idee: Terminlisten der Tutorgruppen aus TUMOnline herunterladen
  - und einlesen, beste Terminkombination nach folgenden Voraussetz-
  - ungen finden:
@@ -7,7 +7,8 @@ module IntellTerrec where
  - .. möglichst kurze Wartezeiten
  - .. möglichst kurze Laufwege -}
  
- 
+
+ {- 
  {- IO -}
  
  -- to implement
