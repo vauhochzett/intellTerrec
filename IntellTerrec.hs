@@ -46,13 +46,10 @@ groupSlot =
 
 {- IO -}
 
--- to implement
+-- todo - implement
 
 
 {- Funktionen -}
-
-subtractTimes :: Time -> Time -> Bool
-subtractTimes time1 time2 = (hour time1) < (hour time2)
 
 algorithm :: DateList -> GroupList -> GroupList
 algorithm freeSlots groupSlots
@@ -61,28 +58,30 @@ algorithm freeSlots groupSlots
 	| length (match_3 freeSlots groupSlots) > 0 = match_3 freeSlots groupSlots
 	| otherwise = undefined
 
-{- match_1 -}
 
 match_1 :: DateList -> GroupList -> GroupList
 match_1 freeSlots groupSlots = [ gs | gs <- groupSlots, fs <- freeSlots, 
 	(dday fs == gday gs) && (startWithin (dstartTime fs) (gstartTime gs)) && (endWithin (dendTime fs) (gendTime gs)) ]
 
--- todo
 match_2 :: DateList -> GroupList -> GroupList
-match_2 freeSlots groupSlots = undefined
+match_2 freeSlots groupSlots = [ gs | gs <- groupSlots, fs <- freeSlots,
+	(dday fs == gday gs) && (startWithin15 (dstartTime fs) (gstartTime gs)) && (endWithin (dendTime fs) (gendTime gs)) ]
 
 -- todo
 match_3 :: DateList -> GroupList -> GroupList
 match_3 freeSlots groupSlots = undefined
 
 startWithin :: Time -> Time -> Bool
-startWithin time1 time2 
-	| hour time1 < hour time2 = True
-	| hour time1 == hour time2 && minute time1 <= minute time2 = True
+startWithin ftime gtime 
+	| hour ftime < hour gtime = True
+	| hour ftime == hour gtime && minute ftime <= minute gtime = True
 	| otherwise = False
 
 endWithin :: Time -> Time -> Bool
-endWithin time1 time2
-	| hour time1 > hour time2 = True
-	| hour time1 == hour time2 && minute time1 >= minute time2 = True
+endWithin ftime gtime
+	| hour ftime > hour gtime = True
+	| hour ftime == hour gtime && minute ftime >= minute gtime = True
 	| otherwise = False
+
+expandSlots :: Integer -> DateList -> DateList
+expandSlots amount freeSlots = undefined
