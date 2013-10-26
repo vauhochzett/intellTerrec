@@ -1,4 +1,5 @@
 module IntellTerrec where
+import Csv9
 
 {- Idee: Terminlisten der Tutorgruppen aus TUMOnline herunterladen
  - und einlesen, beste Terminkombination nach folgenden Voraussetz-

@@ -1,4 +1,7 @@
+module Csv9 where 
+import Types
 import Text.ParserCombinators.Parsec
+--import Data.List
 
 csvFile = endBy line eol
 line = sepBy cell (char ',')
@@ -29,3 +32,27 @@ main =
             Left e -> do putStrLn "Error parsing input:"
                          print e
             Right r -> mapM_ print r
+
+
+{- Extraktion der relevanten Informationen -}
+
+extractTime :: [String] -> Time
+extractTime timeString 
+	| length timeString == 2 = Time (read (head timeString)) (read (last timeString))
+	| otherwise = Time (read (head timeString)) (read (head (tail timeString)))
+
+timeToDigits :: String -> [String]
+timeToDigits string = words [ switchDD a | a <- string ]
+
+switchDD :: Char -> Char
+switchDD character 
+	| character == ':' = ' '
+	| otherwise = character
+
+extractDay :: String -> Day
+extractDay string 
+	| string == "MO" = 0
+	| string == "DI" = 1
+	| string == "MI" = 2
+	| string == "DO" = 3
+	| string == "FR" = 4
