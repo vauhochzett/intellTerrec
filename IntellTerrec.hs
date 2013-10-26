@@ -14,7 +14,7 @@ import Csv9
 type Day = Integer
 type Hour = Integer
 type Minute = Integer
-type GNumber = Integer
+type GNumber = String
 
 type GroupList = [Group]
 type DateList = [Date]
