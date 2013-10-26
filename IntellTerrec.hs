@@ -10,6 +10,16 @@ import Types
  - .. möglichst kurze Laufwege -}
 
 
+{- Main -}
+
+main = do
+    putStrLn "Hallo! Dieses Programm berechnet Ihre optimalen Tutorgruppen."
+    putStrLn "Bitte geben Sie den Pfad der CSV-Datei aus TUMOnline (Export -> Export als CSV -> UTF-8) ein:"
+    filePath <- getLine
+    --parseCSV filePath
+    putStrLn filePath
+
+
 {- Konstanten (Testing) -}
 
 freeSlot :: DateList
@@ -27,8 +37,8 @@ groupSlot =
 
 {- IO -}
 
-parseTest :: String -> [[String]]
-parseTest csvData = tail (parseCSV csvData)
+{-parseTest :: String -> [[String]]
+parseTest csvData = tail (parse csvData)-}
 
 
 {- Funktionen -}

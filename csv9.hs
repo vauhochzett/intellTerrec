@@ -1,6 +1,7 @@
 module Csv9 where 
 import Types
 import Text.ParserCombinators.Parsec
+
 --import Data.List
 
 csvFile = endBy line eol
@@ -31,7 +32,9 @@ main =
        case parse csvFile "(stdin)" c of
             Left e -> do putStrLn "Error parsing input:"
                          print e
-            Right r -> mapM_ print r
+            --Right r -> mapM_ print r
+
+-- parseTest :: String -> 
 
 
 {- Extraktion der relevanten Informationen -}
